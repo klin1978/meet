@@ -93,3 +93,6 @@ As a user, I should see a chart showing upcoming events in each city, so that th
 - Given the user is in the event details page
 - When the user clicks the button to see a chart showing upcoming events in each city
 - Then a chart with the number of upcoming events for each city will be shown
+
+## Serverless Functions
+This Meet App will utilize serverless functions in the backend, server logic side to handle the authorization for accessing public calendar events from the Google Calendar API. It will also be able to handle data processing and filtering, event recommendations, and event notifications. Doing so will allow for flexibility, scalability, cost-efficiency, smooth user experience, and optimal performance without needing to manage a complex server infrastructure. 
