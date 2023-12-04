@@ -59,6 +59,6 @@ describe('<App /> integration', () => {
         const NumberOfEventsInput = within(NumberOfEventsDOM).queryByRole('textbox');
 
         await user.type(NumberOfEventsInput, '{backspace}{backspace}10');
-        expect(NumberOfInput).toHaveValue('10');
+        expect(NumberOfEventsInput).toHaveValue('10');
     });
 })
