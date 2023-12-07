@@ -1,7 +1,7 @@
 import { render, waitFor, within } from '@testing-library/react';
 import { getEvents } from '../api';
 import EventList from '../components/EventList';
-//import App from '../App';
+import App from '../App';
 
 describe('<EventList /> component', () => {
     let EventListComponent;
@@ -20,7 +20,7 @@ describe('<EventList /> component', () => {
     });
 });
 
-/* describe('<EventList /> integration', () => {
+describe('<EventList /> integration', () => {
     test('renders list of 32 events when app is mounted and rendered', async () => {
         const AppComponent = render(<App />);
         const AppDOM = AppComponent.container.firstChild;
@@ -30,4 +30,4 @@ describe('<EventList /> component', () => {
             expect(EventListItems.length).toBe(32);
         });
     });
-}) */
+})

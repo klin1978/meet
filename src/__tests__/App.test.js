@@ -1,6 +1,6 @@
-import { render, /*within*/ } from '@testing-library/react';
-//import userEvent from '@testing-library/user-event';
-//import { getEvents } from '../api';
+import { render, within } from '@testing-library/react';
+import { getEvents } from '../api';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 describe('<App /> component', () => {
@@ -22,7 +22,7 @@ describe('<App /> component', () => {
     });
 });
 
-/* describe('<App /> integration', () => {
+describe('<App /> integration', () => {
     test('renders list of events matching city selected', async () => {
         const user = userEvent.setup();
         const AppComponent = render(<App />);
@@ -45,8 +45,8 @@ describe('<App /> component', () => {
 
         expect(allRenderedEventItems.length).toBe(berlinEvents.length);
 
-        allRenderedEventItems.forEach((event) => {
+        allRenderedEventItems.forEach(event => {
             expect(event.textContent).toContain('Berlin, Germany');
         });
     });
-}); */
+});
