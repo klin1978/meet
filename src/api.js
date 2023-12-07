@@ -37,21 +37,21 @@ export const getEvents = async () => {
       return result.events;
     } else return null; 
   }
+};
 
-  const removeQuery = () => {
-    let newurl;
-    if (window.history.pushState && window.location.pathname) {
-      newurl =
-        window.location.protocol +
-        "//" +
-        window.location.host +
-        window.location.pathname;
-      window.history.pushState("", "", newurl);
-    } else {
-      newurl = window.location.protocol + "//" + window.location.host;
-      window.history.pushState("", "", newurl);
-    }
-  };
+const removeQuery = () => {
+  let newurl;
+  if (window.history.pushState && window.location.pathname) {
+    newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
 };
 
 const getToken = async (code) => {
