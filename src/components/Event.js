@@ -13,14 +13,14 @@ const Event = ({ event }) => {
             <p>{event.location}</p>
             <p>{event.created}</p>
             <p>{new Date(event.start.dateTime).toString()}</p>
-            {!showDetails && (
+            {showDetails ? (
                 <>
                     <div className='event-details'>
                         <h3>About Event</h3>
                         <p>{event.description}</p>
                     </div>
                 </>
-            )}
+            ) : null}
             <button className='showDetails-btn' onClick={() => toggleDetails()}>
                 {showDetails ? 'show' : 'hide'} details
             </button>

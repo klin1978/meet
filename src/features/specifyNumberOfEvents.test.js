@@ -22,7 +22,7 @@ defineFeature(feature, test => {
         });
 
         then('the default number of displayed events will be 32', () => {
-            expect(eventList.length).toEqual(32);
+            expect(eventList.length).toBe(32);
         });
     });
 
@@ -31,7 +31,6 @@ defineFeature(feature, test => {
         given('the user is viewing a list of events', async () => {
             AppComponent = render(<App />);
             const AppDOM = AppComponent.container.firstChild;
-
             await waitFor(() => {
                 const eventList = within(AppDOM).queryAllByRole('listitem');
                 expect(eventList.length).toBe(32);
@@ -39,14 +38,15 @@ defineFeature(feature, test => {
         });
 
         when('the user changes the number of events displayed', async () => {
-            const button = AppComponent.queryByTestId('numberOfEventsInput');
-            await userEvent.type(button, '{backspace}{backspace}10');
+            const textbox = AppComponent.queryByTestId('numberOfEvents-input');
+            await userEvent.type(textbox, '{backspace}{backspace}10');
         });
 
         then('the number of events displayed will be updated the the number selected', () => {
             const AppDOM = AppComponent.container.firstChild;
             const eventList = within(AppDOM).queryAllByRole('listitem');
-            expect(eventList.length).toEqual(10);
+            expect(eventList.length).toBe(10);
         });
     });
-})
+
+});

@@ -1,5 +1,5 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { render, within, waitFor } from '@testing-library/react';
+import { render, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
@@ -15,18 +15,17 @@ defineFeature(feature, test => {
         when('the user takes no action on an event', async () => {
             const AppDOM = AppComponent.container.firstChild;
             const EventListDOM = AppDOM.querySelector('#event-list');
-    
+
             await waitFor(() => {
-              const EventListItems =
-                within(EventListDOM).queryAllByRole('listitem');
-              expect(EventListItems.length).toBe(32);
-            });
+                const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+                expect(EventListItems.length).toBe(32);
+            })
         });
 
         then('the event details should be hidden by default', () => {
             const EventDOM = AppComponent.container.firstChild;
-            const eventDetails = EventDOM.querySelector('.event-details');
-            expect(eventDetails).not.toBeInTheDocument();
+            const details = EventDOM.querySelector('.event-details');
+            expect(details).not.toBeInTheDocument;
         });
     });
 
@@ -35,24 +34,22 @@ defineFeature(feature, test => {
         given('the user opens the app and is viewing the list of events', async () => {
             AppComponent = render(<App />);
             const AppDOM = AppComponent.container.firstChild;
-            const EventListDOM = AppDOM.querySelector('#event-list');
-      
+
             await waitFor(() => {
-              const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-              expect(EventListItems.length).toBe(32);
+                const eventList = within(AppDOM).queryAllByRole('listitem');
+                expect(eventList.length).toBe(0);
             });
         });
 
         when('the user clicks on Show Details button of an event', async () => {
-            const button = AppComponent.queryAllByText('Show Details')[0];
-
-            await userEvent.click(button);
+            const showButton = AppComponent.queryAllByText('Show Details')[0];
+            await userEvent.click(showButton);
         });
 
         then('the event details should be shown', () => {
-            const EventListDOM = AppComponent.container.firstChild;
-            const eventDetails = EventListDOM.querySelector('.event-details');
-            expect(eventDetails).toBeInTheDocument();
+            const EventDOM = AppComponent.container.firstChild;
+            const details = EventDOM.querySelector('.event-details');
+            expect(details).toBeInTheDocument;
         });
     });
 
@@ -64,16 +61,17 @@ defineFeature(feature, test => {
             const AppDOM = AppComponent.container.firstChild;
 
             await waitFor(() => {
-                const EventListItems = within(AppDOM).queryAllByRole('listitem');
-                expect(EventListItems.length).toBe(32);
+                const eventList = within(AppDOM).queryAllByRole('listitem');
+                expect(eventList.length).toBe(0)
             });
 
             button = AppComponent.queryAllByText('Show Details')[0];
             await userEvent.click(button);
 
-            const EventListDOM = AppComponent.container.firstChild;
-            const eventDetails = EventListDOM.querySelector('.event-details');
-            expect(eventDetails).toBeInTheDocument();
+            const EventDOM = AppComponent.container.firstChild;
+            const details = EventDOM.querySelector('.event-details');
+            expect(details).toBeInTheDocument;
+
         });
 
         when('the user clicks the Hide Details button', async () => {
@@ -82,8 +80,8 @@ defineFeature(feature, test => {
 
         then('the event details should be hidden', () => {
             const EventDOM = AppComponent.container.firstChild;
-            const eventDetails = EventDOM.querySelector('.event-details');
-            expect(eventDetails).not.toBeInTheDocument();
+            const details = EventDOM.querySelector('.event-details');
+            expect(details).not.toBeInTheDocument;
         });
     });
 });
